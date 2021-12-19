@@ -3,7 +3,7 @@ Projeto final da disciplina **__SSC0904 - Sistemas Computacionais Distribuídos_
 
 A solução foi imaginada tendo em mente uma possível solução para o vazamento de dados pessoais no contexto da **__Lei Geral de Dados Pessoais__** (LGPD). A anonimização foi escolhida como método pois torna impossível identificar uma pessoa a partir do dado disponível, já que uma vez anonimizado este perde definitivamente a possibilidade de identificar uma pessoa natural.
 
-A aplicação foi proposta quando durante pesquisas sobre a **__General Data Protection Regulation__** (GDPR) chegamos ao caso da [Vastaamo](https://www.lexology.com/library/detail.aspx?g=ae4fd6ac-461f-466a-bc7f-0429f71ebbf7), uma clínica de psicoterapia finlandesa que teve sua base de dados de pacientes roubada em Outubro de 2020.
+A aplicação foi proposta quando durante pesquisas sobre a **__General Data Protection Regulation__** (GDPR) chegamos ao caso da [Vastaamo](https://www.lexology.com/library/detail.aspx?g=ae4fd6ac-461f-466a-bc7f-0429f71ebbf7), uma clínica de psicoterapia finlandesa que teve sua base de dados de pacientes roubada em Novembro de 2018.
 
 ![Vastaamo](./image/case.PNG)
 
