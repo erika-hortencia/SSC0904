@@ -58,22 +58,22 @@ Para o código funcionar é necessário substituir 'SEU_USUARIO' e 'SUA_SENHA' p
 
 O desenvolvimento foi feito com base no banco de dados de pacientes de um hospital fictício. Nela o registro dos pacientes contem dados sensíveis como nome completo, CPF, telefone e endereço.
 
-![DBinicial](./image/case.PNG)
+![DBinicial](./image/DBinicial.PNG)
 
 Bom, a LGPD recomenda que seja aplicada a anonimização quando da eliminação de dados que não tenham mais utilidade ao tratamento do paciente. Nesse caso, anonimizamos os dados para o caso de estes serem úteis na realização de estudos estatísticos e os salvamos em um arquivo json.
 
-![jsonGerado](./image/case.PNG)
+![jsonGerado](./image/jsonGerado.PNG)
 
 Para tanto, removemos todos os dados sensíveis do banco que dados (que poderiam ser usados para identificar os indivíduos), são eles: o **__CPF__** (que foi substituído por um número gerado aleatoriamente), o **__nome__**, o **__endereço__**, o **__telefone__**, e a **__ocupação __** (todos estes substituídos pela palavra chave **__REDACTED__** ). Abaixo é possível ver o dataframe com os dados originais e com os dados anonimizados:
 
 -**__Dataframe original__**
-![DataFrameOriginal](./image/case.PNG)
+![DataFrameOriginal](./image/DataFrameOriginal.PNG)
 
 -**__Dataframe anonimizado__**
-![DataFrameAnonimizado](./image/case.PNG)
+![DataFrameAnonimizado](./image/DataFrameAnonimizado.PNG)
 
 Note que o dataframe original foi apenas utilizado para ilustrar a solução, no caso de utilização real da aplicação essa informação é destruída logo que a anonimização é feita.
 Para concluir o processo e torná-lo irreversível (o que é condição primordial para que possamos dizer que houve anonimização de fato), destruímos os registros do banco de dados original.
 
 -**__Banco de dados após a finalização da execução__**
-![DBfinal](./image/case.PNG)
+![DBfinal](./image/DBfinal.PNG)
