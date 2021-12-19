@@ -7,9 +7,22 @@ import sqlConnection
 Function to import oracle database
 """
 def importOracleDB():
+    connection =  sqlConnection.connect()
     #Read database
-    df = pd.read_sql("SELECT * FROM PACIENTE", sqlConnection.connect())
+    df = pd.read_sql("SELECT * FROM PACIENTE",connection)
+
     return df
+
+
+"""
+Function to delete the original database, finalizes anonimization by making the process irreversible
+"""
+def deleteDB():
+    connection =  sqlConnection.connect()
+    cur = connection.cursor()
+    cur.execute("DELETE FROM PACIENTE")
+    connection.commit()
+    
 
 """
 Auxiliary function no anonimize personal data by genarating random valid social security number
@@ -60,11 +73,6 @@ def anonimize_database(origem):
     #Returns an anonimized dataframe
     anondf = pd.read_json(filename, orient='columns')
 
+    deleteDB()
+
     return anondf
-
-
-
-"""
-print(importOracleDB())
-print(anonimize_database(importOracleDB()))
-"""
