@@ -5,19 +5,24 @@ from tkinter import filedialog, messagebox, ttk
 
 #Initalise the tkinter GUI
 ogDF = tk.Tk()
-anonDF = tk.Tk()
+ogDF.title('Original Database')
+ogDF.resizable(0, 0)
 
-ogDF.geometry("600x300")
-anonDF.geometry("600x300")
+anonDF = tk.Tk()
+anonDF.title('Anonimized Database')
+anonDF.resizable(0, 0)
+
+ogDF.geometry("800x300")
+anonDF.geometry("800x300")
 
 """
 Frame for TreeViews
 """
 frame1 = tk.LabelFrame(ogDF, text="Original Data")
-frame1.place(height=280, width=600)
+frame1.place(height=280, width=800)
 
 frame2 = tk.LabelFrame(anonDF, text="Anonimized Data")
-frame2.place(height=280, width=600)
+frame2.place(height=280, width=800)
 
 """
 Treeviews Widget
