@@ -69,8 +69,9 @@ anonimizedDF_rows = anonimizedDF.to_numpy().tolist()
 for row in anonimizedDF_rows:
     tv2.insert("", "end", values=row)
 
-print(originalDF)
-print(anonimizedDF)
+
+#print(originalDF)
+#print(anonimizedDF)
 
 ogDF.mainloop()
 anonDF.mainloop()
