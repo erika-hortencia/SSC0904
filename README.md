@@ -64,7 +64,7 @@ Bom, a LGPD recomenda que seja aplicada a anonimização quando da eliminação 
 
 ![jsonGerado](./image/jsonGerado.PNG)
 
-Para tanto, removemos todos os dados sensíveis do banco que dados (que poderiam ser usados para identificar os indivíduos), são eles: o **__CPF__** (que foi substituído por um número gerado aleatoriamente), o **__nome__**, o **__endereço__**, o **__telefone__**, e a **__ocupação __** (todos estes substituídos pela palavra chave **__REDACTED__** ). Abaixo é possível ver o dataframe com os dados originais e com os dados anonimizados:
+Para tanto, removemos todos os dados sensíveis do banco que dados (que poderiam ser usados para identificar os indivíduos), são eles: o **__CPF__** (que foi substituído por um número gerado aleatoriamente), o **__nome__**, o **__endereço__**, o **__telefone__**, e a **__ocupação__** (todos estes substituídos pela palavra chave **__REDACTED__** ). Abaixo é possível ver o dataframe com os dados originais e com os dados anonimizados:
 
 -**__Dataframe original__**
 ![DataFrameOriginal](./image/DataFrameOriginal.PNG)
