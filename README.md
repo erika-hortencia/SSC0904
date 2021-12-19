@@ -66,14 +66,14 @@ Bom, a LGPD recomenda que seja aplicada a anonimização quando da eliminação 
 
 Para tanto, removemos todos os dados sensíveis do banco que dados (que poderiam ser usados para identificar os indivíduos), são eles: o **__CPF__** (que foi substituído por um número gerado aleatoriamente), o **__nome__**, o **__endereço__**, o **__telefone__**, e a **__ocupação__** (todos estes substituídos pela palavra chave **__REDACTED__** ). Abaixo é possível ver o dataframe com os dados originais e com os dados anonimizados:
 
--**__Dataframe original__**
+- **__Dataframe original__**
 ![DataFrameOriginal](./image/DataFrameOriginal.PNG)
 
--**__Dataframe anonimizado__**
+- **__Dataframe anonimizado__**
 ![DataFrameAnonimizado](./image/DataFrameAnonimizado.PNG)
 
 Note que o dataframe original foi apenas utilizado para ilustrar a solução, no caso de utilização real da aplicação essa informação é destruída logo que a anonimização é feita.
 Para concluir o processo e torná-lo irreversível (o que é condição primordial para que possamos dizer que houve anonimização de fato), destruímos os registros do banco de dados original.
 
--**__Banco de dados após a finalização da execução__**
+- **__Banco de dados após a finalização da execução__**
 ![DBfinal](./image/DBfinal.PNG)
