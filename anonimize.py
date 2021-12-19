@@ -1,19 +1,19 @@
 import pandas as pd
 import random
+import json
 import sqlConnection
 
-connection = sqlConnection.connect()
+"""
+Function to import oracle database
+"""
+def importOracleDB():
+    #Read database
+    df = pd.read_sql("SELECT * FROM PACIENTE", sqlConnection.connect())
+    return df
 
-df = pd.read_sql("SELECT * FROM PACIENTE", connection)
-
-
-def anonimize_rows(database):
-    for row in database:
-        row['OCUPACAO'] = 'REDACTED'
-
-        yield row
-
-
+"""
+Auxiliary function no anonimize personal data by genarating random valid social security number
+"""
 def geraCPF():
 
     digits = []
@@ -26,31 +26,45 @@ def geraCPF():
     return CPF
 
 
-def anonimize_database(origem, destino):
-    for row in origem:
-        idPaciente = origem['ID_PACIENTE']
-        CPF = geraCPF()
-        dataNascimento = origem['DATA_NASC']
-        dataRegistro = origem['DATA_REGISTRO']
-        sexo = origem['SEXO']
-        endereco = 'REDACTED'
-        telefone = 'REDACTED'
-        medico = origem['MEDICO']
-        ocupacao = origem['OCUPACAO']
-        quadro = origem['QUADRO']
+"""
+Function to create anonimized database
+"""
+def anonimize_database(origem):
+    #Resets the json file
+    filename = "./anonimized_data.json"
+    records = []
+    with open("./anonimized_data.json", 'w') as json_file:
+            json.dump(records, json_file)
 
-        sql_insert = f""" INSERT INTO PACIENTE_ANON VALUES({idPaciente}, {CPF}, TO_DATE('{dataNascimento}','dd/mm/yyyy'), 
-                            TO_DATE('{dataRegistro}','dd/mm/yyyy'), '{sexo}', '{endereco}', '{telefone}', '{medico}', 
-                                '{ocupacao}', '{quadro}') """
-        try:
-            cur = connection.cursor()
-            cur.execute(sql_insert)
-        except Exception as errormessage:
-            print('Erro ao inserir os dados ' , errormessage)
-        else:
-            print('Dados inseridos com sucesso!')
+    #Reads dataframe, redacts sensitive info then writes is to json file
+    for row in range(len(origem.index)):
 
-#anonimize_rows(df)
-#print(df)
+        item_data = {}
+        with open("./anonimized_data.json", 'r') as json_file:
+            temp = json.load(json_file)
+        item_data["ID_PACIENTE"] = int(origem.iat[row, 0])
+        item_data["CPF"] = geraCPF()
+        item_data["NOME"] = 'REDACTED'
+        item_data["DATA_NASC"] = str(origem.iat[row, 3])
+        item_data["DATA_REGISTRO"] = str(origem.iat[row, 4])
+        item_data["SEXO"] = origem.iat[row, 5]
+        item_data["ENDERECO"] = 'REDACTED'
+        item_data["TELEFONE"] = 'REDACTED'
+        item_data["MEDICO"] = origem.iat[row, 8]
+        item_data["OCUPACAO"] =  'REDACTED' #origem.iat[row, 9]
+        item_data["QUADRO"] = origem.iat[row, 10]
+        temp.append(item_data)
+        with open("./anonimized_data.json", 'w') as json_file:
+            json.dump(temp, json_file, indent=4)
+    
+    #Returns an anonimized dataframe
+    anondf = pd.read_json(filename, orient='columns')
 
-print(geraCPF())
+    return anondf
+
+
+
+"""
+print(importOracleDB())
+print(anonimize_database(importOracleDB()))
+"""

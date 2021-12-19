@@ -1,3 +1,7 @@
-import sqlConnection
+import anonimize
+import pandas as pd
 
-connection = sqlConnection.connect()
+
+print(anonimize.importOracleDB())
+print(anonimize.anonimize_database(anonimize.importOracleDB()))
+
